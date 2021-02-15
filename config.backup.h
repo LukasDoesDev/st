@@ -5,11 +5,13 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
+static char *font = "Jetbrains Mono:pixelsize=14:antialias=true:autohint=true";
 /* Spare fonts */
 static char *font2[] = {
-/*	"Inconsolata for Powerline:pixelsize=12:antialias=true:autohint=true", */
-/*	"Hack Nerd Font Mono:pixelsize=11:antialias=true:autohint=true", */
+        "Droid Sans Mono:style=Regular:pixelsize=14:antialias=true:autohint=true",
+        "Menlo:style=Regular:pixelsize=14:antialias=true:autohint=true",
+        "Inconsolata for Powerline:pixelsize=14:antialias=true:autohint=true",
+        "Hack Nerd Font Mono:pixelsize=14:antialias=true:autohint=true",
 };
 
 static int borderpx = 2;
@@ -25,7 +27,7 @@ static int borderpx = 2;
 static char *shell = "/bin/sh";
 char *utmp = NULL;
 /* scroll program: to enable use a string like "scroll" */
-char *scroll = NULL;
+char *scroll = "scroll";
 char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 
 /* identification sequence returned in DA and DECID */
@@ -100,7 +102,7 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 0.8;
+float alpha = 0.70;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -127,9 +129,8 @@ static const char *colorname[] = {
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
-	"#cccccc",
-	"#555555",
-	"black",
+	"#272727",
+	"#ffffff",
 };
 
 
@@ -137,9 +138,9 @@ static const char *colorname[] = {
  * Default colors (colorname index)
  * foreground, background, cursor, reverse cursor
  */
-unsigned int defaultfg = 7;
-unsigned int defaultbg = 258;
-static unsigned int defaultcs = 256;
+unsigned int defaultfg = 257;
+unsigned int defaultbg = 256;
+static unsigned int defaultcs = 257;
 static unsigned int defaultrcs = 257;
 
 /*
@@ -209,6 +210,13 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+        { MODKEY|ShiftMask,     XK_Up,          zoom,           {.f = +1} },
+        { MODKEY|ShiftMask,     XK_Down,        zoom,           {.f = -1} },
+        { MODKEY|ShiftMask,     XK_K,           zoom,           {.f = +1} },
+        { MODKEY|ShiftMask,     XK_J,           zoom,           {.f = -1} },
+        { MODKEY|ShiftMask,     XK_plus,        zoom,           {.f = +1} },
+        { MODKEY|ShiftMask,     XK_underscore,  zoom,           {.f = -1} },
+        { MODKEY|ShiftMask,     XK_parenright,  zoomreset,      {.f =  0} },
 };
 
 /*
@@ -250,6 +258,9 @@ static uint ignoremod = Mod2Mask|XK_SWITCH_MOD;
  */
 static Key key[] = {
 	/* keysym           mask            string      appkey appcursor */
+    { XK_parenright, Mod1Mask|ShiftMask,"\033[41;6u",    0,    0},
+    { XK_underscore, Mod1Mask|ShiftMask,"\033[95;4u",    0,    0},
+    { XK_plus,       Mod1Mask|ShiftMask,"\033[43;4u",    0,    0},
 	{ XK_KP_Home,       ShiftMask,      "\033[2J",       0,   -1},
 	{ XK_KP_Home,       ShiftMask,      "\033[1;2H",     0,   +1},
 	{ XK_KP_Home,       XK_ANY_MOD,     "\033[H",        0,   -1},
