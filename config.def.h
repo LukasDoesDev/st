@@ -103,26 +103,58 @@ unsigned int tabspaces = 8;
 float alpha = 0.8;
 
 /* Terminal colors (16 first used in escape sequence) */
-static const char *colorname[] = {
+/* DEFAULT */
+/*static const char *colorname[] = {/**/
 	/* 8 normal colors */
-	"black",
+	/*"black",
 	"red3",
 	"green3",
 	"yellow3",
 	"blue2",
 	"magenta3",
 	"cyan3",
-	"gray90",
+	"gray90",/**/
 
 	/* 8 bright colors */
-	"gray50",
+	/*"gray50",
 	"red",
 	"green",
 	"yellow",
 	"#5c5cff",
 	"magenta",
 	"cyan",
-	"white",
+	"white",/**/
+
+	/*[255] = 0,/**/
+
+	/* more colors can be added after 255 to use with DefaultXX */
+	/*"#cccccc",
+	"#555555",
+	"black",
+};/**/
+
+/* Terminal colors (16 first used in escape sequence) */
+/* Duotone Dark */
+static const char *colorname[] = {
+	/* 8 normal colors */
+	"#1f1d27", /* black */
+	"#d9393e", /* red */
+	"#2dcd73", /* green */
+	"#d9b76e", /* yellow */
+	"#2488ff", /* blue */
+	"#de8d40", /* purple */
+	"#6ad7d9", /* cyan */
+	"#b7a1ff", /* white */
+
+	/* 8 bright colors */
+	"#353147", /* black */
+	"#d9393e", /* red */
+	"#2dcd73", /* green */
+	"#d9b76e", /* yellow */
+	"#2488ff", /* blue */
+	"#de8d40", /* purple */
+	"#6ad7d9", /* cyan */
+	"#dfd1ed", /* white */
 
 	[255] = 0,
 
@@ -138,7 +170,7 @@ static const char *colorname[] = {
  * foreground, background, cursor, reverse cursor
  */
 unsigned int defaultfg = 7;
-unsigned int defaultbg = 258;
+unsigned int defaultbg = 0;
 static unsigned int defaultcs = 256;
 static unsigned int defaultrcs = 257;
 
